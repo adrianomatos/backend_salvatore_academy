@@ -17,11 +17,22 @@ app.get("/personagens", function (req, res) {
 
 // ENDPOINT Read By ID
 app.get("/personagens/:id", function (req, res) {
-	const id = req.params.id;
-  res.send(lista[id]);
+  const id = req.params.id;
+  res.send(lista[id - 1]);
 });
 
-// SERVIDOR  OUVINDO
+// Sinalisando que express está usando JSON
+app.use(express.json());
+
+// ENDPOINT Create POST /personagens
+app.post("/personagens", function (req, res) {
+  const body = req.body;
+  const novoItem = body.nome;
+	lista.push(novoItem);
+  res.send("Ítem add com sucesso: " + novoItem);
+});
+
+// SERVIDOR OUVINDO
 app.listen(3000, () =>
   console.log("Servidor rodando em http://localhost:3000")
 );

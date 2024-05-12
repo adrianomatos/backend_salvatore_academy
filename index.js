@@ -4,12 +4,7 @@ const app = express();
 
 //  ENDPOINT PRINCIPAL
 app.get("/", function (req, res) {
-  res.send("Hello World Salvatore");
-});
-
-//  ENDPOINT TESTE
-app.get("/oi", function (req, res) {
-  res.send("Oi");
+  res.send("Hello World Nodemon!");
 });
 
 // SERVIDOR  OUVINDO

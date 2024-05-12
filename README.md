@@ -2,4 +2,6 @@
 
 ## COMANDOS
 * npm init -y 
-* npm install quando quiser instalar dependências deste projeto
+* npm install quando quiser instalar TODAS as dependências deste projeto
+* npm i express
+* npm start - quando definido no package.json é executado node index.js

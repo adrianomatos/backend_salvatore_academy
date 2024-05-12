@@ -8,7 +8,7 @@
 - npm start - quando definido no package.json é executado node index.js
 
 ## MODEMON
+
 - npm i --save-dev nodemon
 - npm i -D nodemon
 - npm run dev
-

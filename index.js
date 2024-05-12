@@ -15,6 +15,12 @@ app.get("/personagens", function (req, res) {
   res.send(lista);
 });
 
+// ENDPOINT Read By ID
+app.get("/personagens/:id", function (req, res) {
+	const id = req.params.id;
+  res.send(lista[id]);
+});
+
 // SERVIDOR  OUVINDO
 app.listen(3000, () =>
   console.log("Servidor rodando em http://localhost:3000")

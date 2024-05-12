@@ -12,7 +12,7 @@ const lista = ["Java", "Android", "Kotlin"];
 
 // ENDPOINT Read All
 app.get("/personagens", function (req, res) {
-  res.send(lista);
+  res.send(lista.filter(Boolean));
 });
 
 // ENDPOINT Read By ID
@@ -32,13 +32,20 @@ app.post("/personagens", function (req, res) {
   res.send("Ítem add com sucesso: " + novoItem);
 });
 
-// ENDPOINT Update PUT /personagens
+// ENDPOINT Update PUT /personagens/id
+app.delete("/personagens/:id", function (req, res) {
+  const id = req.params.id; // Acessando o parâmetro ID da rota
+  delete lista[id - 1]; // Deleta pelo ID - 1
+  res.send("Ítem removido com sucesso: " + id);
+});
+
+// ENDPOINT DELETE /personagens/id
 app.put("/personagens/:id", function (req, res) {
   const id = req.params.id; // Acessando o parâmetro ID da rota
   const body = req.body; // Acessando o BODY da requisição
   const novoItem = body.nome; // Acessando propriedade nome do body
-	lista[id - 1] = novoItem; // Atualisamos na lista pelo ID - 1
-  res.send("Ítem add com sucesso: " + id + ' - ' + novoItem);
+  lista[id - 1] = novoItem; // Atualisamos na lista pelo ID - 1
+  res.send("Ítem add com sucesso: " + id + " - " + novoItem);
 });
 
 // SERVIDOR OUVINDO

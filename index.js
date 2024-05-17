@@ -28,24 +28,36 @@ app.use(express.json());
 app.post("/personagens", function (req, res) {
   const body = req.body;
   const novoItem = body.nome;
+  if (!novoItem) {
+    return res.send("ALERTA: FALTA PROPRIEDADE NOME");
+  }
+  if (lista.includes(novoItem)) {
+    return res.send("ALERTA: ÍTEM JÁ EXISTE");
+  }
   lista.push(novoItem);
   res.send("Ítem add com sucesso: " + novoItem);
 });
 
 // ENDPOINT Update PUT /personagens/id
-app.delete("/personagens/:id", function (req, res) {
-  const id = req.params.id; // Acessando o parâmetro ID da rota
-  delete lista[id - 1]; // Deleta pelo ID - 1
-  res.send("Ítem removido com sucesso: " + id);
-});
-
-// ENDPOINT DELETE /personagens/id
 app.put("/personagens/:id", function (req, res) {
   const id = req.params.id; // Acessando o parâmetro ID da rota
   const body = req.body; // Acessando o BODY da requisição
   const novoItem = body.nome; // Acessando propriedade nome do body
+  if (!novoItem) {
+    return res.send("ALERTA: FALTA PROPRIEDADE NOME");
+  }
+  if (lista.includes(novoItem)) {
+    return res.send("ALERTA: ÍTEM JÁ EXISTE");
+  }
   lista[id - 1] = novoItem; // Atualisamos na lista pelo ID - 1
-  res.send("Ítem add com sucesso: " + id + " - " + novoItem);
+  res.send("Ítem alterado com sucesso: " + id + " - " + novoItem);
+});
+
+// ENDPOINT DELETE /personagens/id
+app.delete("/personagens/:id", function (req, res) {
+  const id = req.params.id; // Acessando o parâmetro ID da rota
+  delete lista[id - 1]; // Deleta pelo ID - 1
+  res.send("Ítem removido com sucesso: " + id);
 });
 
 // SERVIDOR OUVINDO

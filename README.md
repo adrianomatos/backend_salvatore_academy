@@ -3,9 +3,9 @@
 ## COMANDOS
 
 - npm init -y
-- npm install quando quiser instalar TODAS as dependências deste projeto
+- npm install quando quiser instalar as dependências do projeto
 - npm i express
-- npm start - quando definido no package.json é executado node index.js
+- npm start se definido no package.json é executado node index.js
 
 ## MODEMON
 

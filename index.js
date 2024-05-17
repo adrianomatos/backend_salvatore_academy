@@ -29,13 +29,13 @@ app.post("/personagens", function (req, res) {
   const body = req.body;
   const novoItem = body.nome;
   if (!novoItem) {
-    return res.send("ALERTA: FALTA PROPRIEDADE NOME");
+    return res.status(400).send("ALERTA: FALTA PROPRIEDADE NOME");
   }
   if (lista.includes(novoItem)) {
-    return res.send("ALERTA: ÍTEM JÁ EXISTE");
+    return res.status(409).send("ALERTA: ÍTEM JÁ EXISTE");
   }
   lista.push(novoItem);
-  res.send("Ítem add com sucesso: " + novoItem);
+  res.status(201).send("Ítem adicionado com sucesso: " + novoItem);
 });
 
 // ENDPOINT Update PUT /personagens/id
@@ -44,10 +44,10 @@ app.put("/personagens/:id", function (req, res) {
   const body = req.body; // Acessando o BODY da requisição
   const novoItem = body.nome; // Acessando propriedade nome do body
   if (!novoItem) {
-    return res.send("ALERTA: FALTA PROPRIEDADE NOME");
+    return res.status(400).send("ALERTA: FALTA PROPRIEDADE NOME");
   }
   if (lista.includes(novoItem)) {
-    return res.send("ALERTA: ÍTEM JÁ EXISTE");
+    return res.status(409).send("ALERTA: ÍTEM JÁ EXISTE");
   }
   lista[id - 1] = novoItem; // Atualisamos na lista pelo ID - 1
   res.send("Ítem alterado com sucesso: " + id + " - " + novoItem);
